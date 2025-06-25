@@ -1,0 +1,306 @@
+/* Remove default Ionic styling and set up the calculator */
+ion-content {
+  --background: #000000;
+  --color: #ffffff;
+}
+
+ion-header ion-toolbar {
+  --background: #000000;
+  --color: #ffffff;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: #000000;
+}
+
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  background: #000000;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+/* Calculator Display */
+.calculator-display {
+  --background: transparent;
+  --color: #ffffff;
+  --placeholder-color: #ffffff;
+  --border-style: none;
+  font-size: 48px;
+  font-weight: 200;
+  text-align: right;
+  margin-bottom: 20px;
+  min-height: 100px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.calculator-display .native-input {
+  color: #ffffff !important;
+  font-size: 48px !important;
+  font-weight: 200 !important;
+  text-align: right !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  padding-right: 10px !important;
+}
+
+/* Grid styling */
+ion-grid {
+  --ion-grid-padding: 0;
+  --ion-grid-padding-xs: 0;
+  --ion-grid-padding-sm: 0;
+  --ion-grid-padding-md: 0;
+  --ion-grid-padding-lg: 0;
+  --ion-grid-padding-xl: 0;
+}
+
+ion-row {
+  margin-bottom: 15px;
+}
+
+ion-col {
+  padding: 5px;
+}
+
+/* Base button styling */
+ion-button {
+  --border-radius: 50%;
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --background-hover: #4a4a4a;
+  --color: #ffffff;
+  --box-shadow: none;
+  --border-style: none;
+  font-size: 32px;
+  font-weight: 400;
+  height: 80px;
+  width: 80px;
+  margin: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+/* Number buttons (0-9) */
+ion-button:has-text("0"),
+ion-button:has-text("1"),
+ion-button:has-text("2"),
+ion-button:has-text("3"),
+ion-button:has-text("4"),
+ion-button:has-text("5"),
+ion-button:has-text("6"),
+ion-button:has-text("7"),
+ion-button:has-text("8"),
+ion-button:has-text("9"),
+ion-button:has-text(".") {
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --background-hover: #4a4a4a;
+  --color: #ffffff;
+}
+
+/* Operator buttons */
+ion-button:has-text("÷"),
+ion-button:has-text("×"),
+ion-button:has-text("−"),
+ion-button:has-text("+"),
+ion-button:has-text("=") {
+  --background: #ff9500;
+  --background-activated: #ffb143;
+  --background-hover: #ffb143;
+  --color: #ffffff;
+}
+
+/* Function buttons */
+ion-button:has-text("C"),
+ion-button:has-text("⌫"),
+ion-button:has-text("("),
+ion-button:has-text(")"),
+ion-button:has-text("sin"),
+ion-button:has-text("cos"),
+ion-button:has-text("tan"),
+ion-button:has-text("log"),
+ion-button:has-text("ln"),
+ion-button:has-text("√"),
+ion-button:has-text("π"),
+ion-button:has-text("^") {
+  --background: #a6a6a6;
+  --background-activated: #bfbfbf;
+  --background-hover: #bfbfbf;
+  --color: #000000;
+}
+
+/* Alternative selectors for buttons (since :has-text might not work) */
+/* Number buttons */
+ion-col:nth-child(1) ion-button,
+ion-col:nth-child(2) ion-button,
+ion-col:nth-child(3) ion-button {
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --color: #ffffff;
+}
+
+/* Row 1 - Function buttons */
+ion-row:nth-child(2) ion-button {
+  --background: #a6a6a6;
+  --background-activated: #bfbfbf;
+  --color: #000000;
+}
+
+/* Row 2 - Function buttons except division */
+ion-row:nth-child(3) ion-col:nth-child(1) ion-button,
+ion-row:nth-child(3) ion-col:nth-child(2) ion-button,
+ion-row:nth-child(3) ion-col:nth-child(3) ion-button {
+  --background: #a6a6a6;
+  --background-activated: #bfbfbf;
+  --color: #000000;
+}
+
+/* Division button */
+ion-row:nth-child(3) ion-col:nth-child(4) ion-button {
+  --background: #ff9500;
+  --background-activated: #ffb143;
+  --color: #ffffff;
+}
+
+/* Row 3 - Numbers and multiplication */
+ion-row:nth-child(4) ion-col:nth-child(1) ion-button,
+ion-row:nth-child(4) ion-col:nth-child(2) ion-button,
+ion-row:nth-child(4) ion-col:nth-child(3) ion-button {
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --color: #ffffff;
+}
+
+ion-row:nth-child(4) ion-col:nth-child(4) ion-button {
+  --background: #ff9500;
+  --background-activated: #ffb143;
+  --color: #ffffff;
+}
+
+/* Row 4 - Numbers and subtraction */
+ion-row:nth-child(5) ion-col:nth-child(1) ion-button,
+ion-row:nth-child(5) ion-col:nth-child(2) ion-button,
+ion-row:nth-child(5) ion-col:nth-child(3) ion-button {
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --color: #ffffff;
+}
+
+ion-row:nth-child(5) ion-col:nth-child(4) ion-button {
+  --background: #ff9500;
+  --background-activated: #ffb143;
+  --color: #ffffff;
+}
+
+/* Row 5 - Numbers and addition */
+ion-row:nth-child(6) ion-col:nth-child(1) ion-button,
+ion-row:nth-child(6) ion-col:nth-child(2) ion-button,
+ion-row:nth-child(6) ion-col:nth-child(3) ion-button {
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --color: #ffffff;
+}
+
+ion-row:nth-child(6) ion-col:nth-child(4) ion-button {
+  --background: #ff9500;
+  --background-activated: #ffb143;
+  --color: #ffffff;
+}
+
+/* Row 6 - 0, decimal, power, equals */
+ion-row:nth-child(7) ion-col:nth-child(1) ion-button,
+ion-row:nth-child(7) ion-col:nth-child(2) ion-button {
+  --background: #333333;
+  --background-activated: #4a4a4a;
+  --color: #ffffff;
+}
+
+ion-row:nth-child(7) ion-col:nth-child(3) ion-button {
+  --background: #a6a6a6;
+  --background-activated: #bfbfbf;
+  --color: #000000;
+}
+
+ion-row:nth-child(7) ion-col:nth-child(4) ion-button {
+  --background: #ff9500;
+  --background-activated: #ffb143;
+  --color: #ffffff;
+}
+
+/* Row 7 - Function buttons */
+ion-row:nth-child(8) ion-button {
+  --background: #a6a6a6;
+  --background-activated: #bfbfbf;
+  --color: #000000;
+}
+
+/* Special case for zero button to be wider (like iOS) */
+ion-row:nth-child(7) ion-col:nth-child(1) {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+ion-row:nth-child(7) ion-col:nth-child(1) ion-button {
+  --border-radius: 40px;
+  width: 100%;
+  height: 80px;
+  text-align: left;
+  --padding-start: 35px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+  }
+  
+  .calculator-display {
+    font-size: 36px;
+    min-height: 80px;
+  }
+  
+  .calculator-display .native-input {
+    font-size: 36px !important;
+  }
+  
+  ion-button {
+    height: 70px;
+    width: 70px;
+    font-size: 28px;
+  }
+  
+  ion-row:nth-child(7) ion-col:nth-child(1) ion-button {
+    height: 70px;
+  }
+}
+
+@media (max-width: 320px) {
+  ion-button {
+    height: 60px;
+    width: 60px;
+    font-size: 24px;
+  }
+  
+  ion-row:nth-child(7) ion-col:nth-child(1) ion-button {
+    height: 60px;
+  }
+  
+  .calculator-display {
+    font-size: 32px;
+    min-height: 70px;
+  }
+  
+  .calculator-display .native-input {
+    font-size: 32px !important;
+  }
+}
