@@ -1,177 +1,214 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <div class="calculator">
+    <div class="calculator scientific">
       <ion-grid>
+        <!-- Display Row -->
         <ion-row>
           <ion-col size="12">
-            <ion-input
-              readonly
-              [(ngModel)]="display"
-              class="calculator-display"
-            ></ion-input>
+            <div class="calculator-display">
+              <ion-input
+                readonly
+                [(ngModel)]="display"
+                class="main-display"
+              ></ion-input>
+            </div>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="clear()"
-              >C</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="backspace()"
-              >⌫</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('(')"
-              >(</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append(')')"
-              >)</ion-button
-            ></ion-col
-          >
+
+        <!-- Scientific Functions Grid -->
+        <!-- Row 1: ( ) mc m+ m- mr -->
+        <ion-row class="scientific-row">
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('(')">(</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(')')">)</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn memory" (click)="memoryClear()">mc</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn memory" (click)="memoryAdd()">m+</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn memory" (click)="memorySubtract()">m−</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn memory" (click)="memoryRecall()">mr</ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="append('sin(')"
-              >sin</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('cos(')"
-              >cos</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('tan(')"
-              >tan</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('/')"
-              >÷</ion-button
-            ></ion-col
-          >
+
+        <!-- Row 2: 2nd x² x³ xʸ eˣ 10ˣ -->
+        <ion-row class="scientific-row">
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn secondary" [class.active]="isSecondFunction" (click)="toggleSecond()">2<sup>nd</sup></ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('^2')">x²</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('^3')">x³</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('^')">x<sup>y</sup></ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'ln(' : 'exp(')">{{ isSecondFunction ? 'ln' : 'eˣ' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'log(' : '10^(')">{{ isSecondFunction ? 'log₁₀' : '10ˣ' }}</ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="append('7')"
-              >7</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('8')"
-              >8</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('9')"
-              >9</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('*')"
-              >×</ion-button
-            ></ion-col
-          >
+
+        <!-- Row 3: 1/x ²√x ³√x ʸ√x ln log₁₀ -->
+        <ion-row class="scientific-row">
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('1/')"><sup>1</sup>⁄<sub>x</sub></ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('sqrt(')">²√x</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('cbrt(')">³√x</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('nthroot(')"><sup>y</sup>√x</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('ln(')">ln</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('log(')">log₁₀</ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="append('4')"
-              >4</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('5')"
-              >5</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('6')"
-              >6</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('-')"
-              >−</ion-button
-            ></ion-col
-          >
+
+        <!-- Row 4: x! sin cos tan e EE -->
+        <ion-row class="scientific-row">
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('!')">x!</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'asin(' : 'sin(')">{{ isSecondFunction ? 'sin⁻¹' : 'sin' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'acos(' : 'cos(')">{{ isSecondFunction ? 'cos⁻¹' : 'cos' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'atan(' : 'tan(')">{{ isSecondFunction ? 'tan⁻¹' : 'tan' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('e')">e</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="appendEE()">EE</ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="append('1')"
-              >1</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('2')"
-              >2</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('3')"
-              >3</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('+')"
-              >+</ion-button
-            ></ion-col
-          >
+
+        <!-- Row 5: Rand sinh cosh tanh π Rad -->
+        <ion-row class="scientific-row">
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="appendRandom()">Rand</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'asinh(' : 'sinh(')">{{ isSecondFunction ? 'sinh⁻¹' : 'sinh' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'acosh(' : 'cosh(')">{{ isSecondFunction ? 'cosh⁻¹' : 'cosh' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append(isSecondFunction ? 'atanh(' : 'tanh(')">{{ isSecondFunction ? 'tanh⁻¹' : 'tanh' }}</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn" (click)="append('pi')">π</ion-button>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button expand="block" class="function-btn angle" [class.active]="isRadians" (click)="toggleRadDeg()">{{ isRadians ? 'Rad' : 'Deg' }}</ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="append('0')"
-              >0</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('.')"
-              >.</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('^')"
-              >^</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="calculate()"
-              >=</ion-button
-            ></ion-col
-          >
+
+        <!-- Main Calculator Section -->
+        <!-- Row: AC +/- % ÷ -->
+        <ion-row class="main-row">
+          <ion-col size="3">
+            <ion-button expand="block" class="function-btn clear" (click)="allClear()">AC</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="function-btn" (click)="toggleSign()">+/−</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="function-btn" (click)="percentage()">%</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="operator-btn" [class.active]="isOperatorActive('/')" (click)="append('/')">÷</ion-button>
+          </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col
-            ><ion-button expand="block" (click)="append('log(')"
-              >log</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('ln(')"
-              >ln</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('sqrt(')"
-              >√</ion-button
-            ></ion-col
-          >
-          <ion-col
-            ><ion-button expand="block" (click)="append('pi')"
-              >π</ion-button
-            ></ion-col
-          >
+
+        <!-- Row: 7 8 9 × -->
+        <ion-row class="main-row">
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('7')">7</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('8')">8</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('9')">9</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="operator-btn" [class.active]="isOperatorActive('*')" (click)="append('*')">×</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <!-- Row: 4 5 6 − -->
+        <ion-row class="main-row">
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('4')">4</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('5')">5</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('6')">6</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="operator-btn" [class.active]="isOperatorActive('-')" (click)="append('-')">−</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <!-- Row: 1 2 3 + -->
+        <ion-row class="main-row">
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('1')">1</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('2')">2</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('3')">3</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="operator-btn" [class.active]="isOperatorActive('+')" (click)="append('+')">+</ion-button>
+          </ion-col>
+        </ion-row>
+
+
+        <!-- Row: calculator-icon 0 . = -->
+        <ion-row class="main-row">
+          <ion-col size="3">
+            <ion-button expand="block" class="function-btn" (click)="showHistory()">
+              <ion-icon name="calculator"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="append('0')">0</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="number-btn" (click)="appendDecimal()">.</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" class="operator-btn equals" (click)="calculate()">=</ion-button>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
