@@ -206,7 +206,6 @@ ion-button:active {
   font-weight: 600;
 }
 
-/* Function buttons */
 .function-btn {
   --background: #333333 !important;
   --background-activated: #d0d0d0 !important;
@@ -217,31 +216,6 @@ ion-button:active {
 
 .function-btn.clear {
   font-weight: 500;
-}
-
-.function-btn.secondary {
-  --background: #333333 !important;
-  --color: #white !important;
-}
-
-.function-btn.secondary.active {
-  --background: #ffffff !important;
-  --color: #000000 !important;
-}
-
-.function-btn.memory {
-  --background: #333333 !important;
-  --color: #white !important;
-}
-
-.function-btn.angle {
-  --background: #333333 !important;
-  --color: #white !important;
-}
-
-.function-btn.angle.active {
-  --background: #ffffff !important;
-  --color: #000000 !important;
 }
 
 /* Special styling for mathematical notation */
