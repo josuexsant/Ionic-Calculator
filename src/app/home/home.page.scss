@@ -1,35 +1,7 @@
-/* Reset and base styles */
-* {
-  box-sizing: border-box;
-}
-
-/* Main content styling */
 ion-content {
   --background: #000000;
-  --color: #ffffff;
-  --padding-start: 0;
-  --padding-end: 0;
-  --padding-top: 0;
-  --padding-bottom: 0;
+  --color: #ffffff !important;
 }
-
-/* Header styling */
-ion-header {
-  --background: #000000;
-}
-
-ion-header ion-toolbar {
-  --background: #000000;
-  --color: #ffffff;
-  --border-width: 0;
-}
-
-ion-title {
-  --color: #ffffff;
-  font-weight: 600;
-}
-
-/* Container */
 #container {
   display: flex;
   justify-content: center;
@@ -38,19 +10,15 @@ ion-title {
   padding: 0;
   background: #000000;
 }
-
 .calculator {
   width: 100%;
   max-width: 100%;
   background: #000000;
   padding: 20px 15px;
 }
-
 .calculator.scientific {
   max-width: 100%;
 }
-
-/* Calculator Display */
 .calculator-display {
   margin-bottom: 20px;
   min-height: 80px;
@@ -61,96 +29,53 @@ ion-title {
   justify-content: flex-end;
   padding: 0 20px 10px 20px;
 }
-
 .main-display {
-  --background: transparent;
-  --color: #ffffff;
-  --placeholder-color: #ffffff;
-  --border-style: none;
-  --padding-start: 0;
-  --padding-end: 0;
-  --padding-top: 0;
-  --padding-bottom: 0;
   font-size: 60px;
   font-weight: 200;
   text-align: right;
   background: transparent;
-  border: none;
-  outline: none;
   width: 100%;
 }
-
 .main-display input,
 .main-display .native-input {
   color: #ffffff !important;
   font-size: 60px !important;
   font-weight: 200 !important;
   text-align: right !important;
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
   padding: 0 !important;
   margin: 0 !important;
   box-shadow: none !important;
   width: 100% !important;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
 }
-
-/* Grid styling */
 ion-grid {
-  --ion-grid-padding: 0;
-  --ion-grid-padding-xs: 0;
-  --ion-grid-padding-sm: 0;
-  --ion-grid-padding-md: 0;
-  --ion-grid-padding-lg: 0;
-  --ion-grid-padding-xl: 0;
   padding: 0;
   max-width: none;
 }
-
 ion-row {
   margin-bottom: 8px;
 }
-
 ion-row:last-child {
   margin-bottom: 0;
 }
-
 ion-row.scientific-row {
   margin-bottom: 6px;
 }
-
 ion-row.main-row {
   margin-bottom: 8px;
 }
-
 ion-col {
   padding: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* Base button styling */
 ion-button {
-  --border-radius: 22px;
-  --background: #333333;
-  --background-activated: #666666;
-  --background-hover: #666666;
-  --color: #ffffff;
-  --box-shadow: none;
-  --border-style: none;
-  --border-width: 0;
-  --ripple-color: transparent;
   font-size: 20px;
   font-weight: 400;
   height: 44px;
   width: 100%;
   margin: 0;
-  --padding-start: 0;
-  --padding-end: 0;
-  --padding-top: 0;
-  --padding-bottom: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
   transition: all 0.1s ease;
   min-height: 44px;
@@ -159,27 +84,18 @@ ion-button {
 ion-button:active {
   transform: scale(0.95);
 }
-
-/* Scientific row buttons - smaller and more compact */
 .scientific-row ion-button {
   height: 40px;
   font-size: 
   16px;
   --border-radius: 40px;
-  min-height: 40px;
 }
-
-/* Main calculator buttons - larger */
 .main-row ion-button {
   height: 50px;
   font-size: 28px;
   --border-radius: 26px;
   min-height: 52px;
 }
-
-/* Button type styles */
-
-/* Number buttons */
 .number-btn {
   --background: #5a5a5a !important; 
   --background-activated: #666666 !important;
@@ -187,8 +103,6 @@ ion-button:active {
   --color: #ffffff !important;
   font-weight: 400;
 }
-
-/* Operator buttons */
 .operator-btn {
   --background: #ff9500 !important;
   --background-activated: #ffb143 !important;
@@ -196,16 +110,13 @@ ion-button:active {
   --color: #ffffff !important;
   font-weight: 500;
 }
-
 .operator-btn.active {
   --background: #ffffff !important;
   --color: #ff9500 !important;
 }
-
 .operator-btn.equals {
   font-weight: 600;
 }
-
 .function-btn {
   --background: #333333 !important;
   --background-activated: #d0d0d0 !important;
@@ -213,27 +124,14 @@ ion-button:active {
   --color: #white !important;
   font-weight: 400;
 }
-
 .function-btn.clear {
   font-weight: 500;
 }
-
-/* Special styling for mathematical notation */
 ion-button sup {
   font-size: 0.7em;
   vertical-align: super;
 }
-
 ion-button sub {
   font-size: 0.7em;
   vertical-align: sub;
-}
-
-/* Icon styling */
-ion-icon {
-  font-size: 24px;
-}
-
-.scientific-row ion-icon {
-  font-size: 18px;
 }
