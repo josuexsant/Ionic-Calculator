@@ -6,14 +6,10 @@ ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 56px);
   padding: 0;
-  background: #000000;
 }
 .calculator {
   width: 100%;
-  max-width: 100%;
-  background: #000000;
   padding: 20px 15px;
 }
 .calculator.scientific {
@@ -21,7 +17,6 @@ ion-content {
 }
 .calculator-display {
   margin-bottom: 20px;
-  min-height: 80px;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -42,15 +37,10 @@ ion-content {
   font-size: 60px !important;
   font-weight: 200 !important;
   text-align: right !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-shadow: none !important;
   width: 100% !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif !important;
 }
 ion-grid {
   padding: 0;
-  max-width: none;
 }
 ion-row {
   margin-bottom: 8px;
@@ -76,7 +66,6 @@ ion-button {
   height: 44px;
   width: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
   transition: all 0.1s ease;
   min-height: 44px;
 }
@@ -94,7 +83,6 @@ ion-button:active {
   height: 50px;
   font-size: 28px;
   --border-radius: 26px;
-  min-height: 52px;
 }
 .number-btn {
   --background: #5a5a5a !important; 
